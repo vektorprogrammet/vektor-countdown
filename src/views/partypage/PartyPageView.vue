@@ -135,7 +135,9 @@
         methods:{
 
             fetch_deadline: async function() {
-                const payload = await axios.get(BaseUrl + '/api/party/deadline/' + this.department.id + '/');
+                const payload = await axios.get(BaseUrl + '/api/party/deadline/' + this.department.id + '/', {
+                    withCredentials: true
+                });
                 const deadline = payload.data;
                 this.deadline = deadline.toString();
             },
@@ -143,7 +145,9 @@
             fetch_applicants: function(){
                 window.setInterval(()=>{
                     axios
-                        .get(BaseUrl + '/api/party/application_count/' + this.department.id + '/')
+                        .get(BaseUrl + '/api/party/application_count/' + this.department.id + '/', {
+                            withCredentials: true
+                        })
                         .then(response => {
                             if(this.last_number_of_applicants !== response.data){
                                 let new_applicants = response.data - this.last_number_of_applicants;
@@ -170,7 +174,9 @@
             btn_intro_click: function(){
                 this.show = false;
                 axios
-                    .get(BaseUrl + '/api/party/application_count/' + this.department.id + '/')
+                    .get(BaseUrl + '/api/party/application_count/' + this.department.id + '/', {
+                        withCredentials: true
+                    })
                     .then(response => {
                         this.inc_number_of_applicants_anim(response.data, 2); //should be 10
                         this.fetching_api = true;
@@ -284,7 +290,9 @@
 
             add_users: function(number, old_applicant_number) {
                 axios
-                    .get(BaseUrl + '/api/party/newest_applications/' + this.department.id + '/')
+                    .get(BaseUrl + '/api/party/newest_applications/' + this.department.id + '/', {
+                        withCredentials: true
+                    })
                     .then( response =>  {
                         //API allows for maximum 5 last entries:
                         let limit = number > response.data.length ? response.data.length : number;

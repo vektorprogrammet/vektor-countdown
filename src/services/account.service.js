@@ -11,12 +11,12 @@ async function logout() {
 }
 
 async function getUser() {
-  const response = await http.get("/api/account/user");
+  const response = await http.getWithCredentials("/api/account/user");
   return response.json();
 }
 
 async function getDepartment() {
-  const response = await http.get("/api/account/get_department");
+  const response = await http.getWithCredentials("/api/account/get_department");
   return response.json();
 }
 

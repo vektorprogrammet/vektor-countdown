@@ -4,6 +4,12 @@ function get(path) {
   return fetch(BaseUrl + path);
 }
 
+function getWithCredentials(path) {
+  return fetch(BaseUrl + path, {
+    credentials: 'include'
+  });
+}
+
 function post(path, data) {
   return fetch(BaseUrl + path, {
     method: 'POST',
@@ -37,6 +43,7 @@ function createSearchParams(data) {
 
 export default {
   get,
+  getWithCredentials,
   post,
   put,
   delete: del,
