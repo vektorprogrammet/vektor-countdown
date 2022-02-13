@@ -1,9 +1,11 @@
+export var BaseUrl = process.env.VUE_APP_API_BASE_URL ? process.env.VUE_APP_API_BASE_URL : "";
+
 function get(path) {
-  return fetch(path);
+  return fetch(BaseUrl + path);
 }
 
 function post(path, data) {
-  return fetch(path, {
+  return fetch(BaseUrl + path, {
     method: 'POST',
     body: createSearchParams(data),
     credentials: 'include',
@@ -13,7 +15,7 @@ function post(path, data) {
 }
 
 function put(path, data) {
-  return fetch(path, {
+  return fetch(BaseUrl + path, {
     method: 'PUT',
     credentials: 'include',
     body: JSON.stringify(data)
@@ -21,7 +23,7 @@ function put(path, data) {
 }
 
 function del(path) {
-  return fetch(path, {
+  return fetch(BaseUrl + path, {
     credentials: 'include',
     method: 'DELETE'
   });
